@@ -23,13 +23,13 @@ public class LipSync : MonoBehaviour
     int fMax = 24000;
 
     public Transform upmouth0_M, upmouth01_L, upmouth02_R, downmouth1_M, downmouth11_L, downmouth12_R;
-    float volume = 1; //----------------1000
+    float volume = 0.1f; //----------------1000 ----- was 1
     //  float freqLow = 200;
     //  float freqHigh = 800;
     //value change
 
-    float freqLow = 200;
-    float freqHigh = 1600;
+    float freqLow = 5; //was 200
+    float freqHigh = 800; //was 1600
 
     int sizeFilter = 5;
     float[] filter;
@@ -48,9 +48,9 @@ public class LipSync : MonoBehaviour
         //      y0 = mouth0.localPosition.y;
         //      y1 = mouth1.localPosition.y;
 
-        y0 = upmouth0_M.localPosition.y;
-        y0 = upmouth01_L.localPosition.y;
-        y0 = upmouth02_R.localPosition.y;
+        y0 = upmouth0_M.localPosition.z;
+        y0 = upmouth01_L.localPosition.z;
+        y0 = upmouth02_R.localPosition.z;
         y1 = downmouth1_M.localPosition.y;
         y1 = downmouth11_L.localPosition.y;
         y1 = downmouth12_R.localPosition.y;
@@ -66,7 +66,7 @@ public class LipSync : MonoBehaviour
 
     float BandVol(float fLow, float fHigh)
     {
-        fLow = Mathf.Clamp(fLow, 20, fMax);
+        fLow = Mathf.Clamp(fLow, 5, fMax); //mid was 20
         fHigh = Mathf.Clamp(fHigh, fLow, fMax);
 
         source.GetSpectrumData(freqData, 0, FFTWindow.BlackmanHarris);
@@ -138,6 +138,8 @@ public class LipSync : MonoBehaviour
 
     void Update()
     {
+        if (!source.isPlaying)
+            return;
         //if (source.clip != null) {
         //    if (!source.isPlaying && source.clip.isReadyToPlay && soundPlayed == false)
         //    {
@@ -147,12 +149,13 @@ public class LipSync : MonoBehaviour
         //}
 
         float band_vol = BandVol(freqLow, freqHigh);//--------------------------------------------------------
+        print(band_vol);
         float val = MovingAverage(band_vol) * volume;
         //limValue = val;//Mathf.Clamp (val, 0, 0.1f);
         //limValue = Mathf.Clamp (val, 0, 10f);
         //check new lip movement abd set clamp val
-        limValue = Mathf.Clamp(val, 0, 0.02f); //-----------------------------------------------25
-        //Debug.Log (y0 - limValue);//-------------------------------------------------------------------------------------------
+        limValue = Mathf.Clamp(val, 0, 25); //-----------------------------------------------25 ---------- 0.02f
+        //Debug.Log(limValue);//-------------------------------------------------------------------------------------------
         if (Input.GetKeyDown(KeyCode.Escape))
         {
             Application.Quit();
@@ -164,13 +167,19 @@ public class LipSync : MonoBehaviour
     {
         //      mouth0.localPosition = new Vector3 (mouth0.localPosition.x, y0 - limValue, mouth0.localPosition.z);
         //      mouth1.localPosition = new Vector3 (mouth1.localPosition.x, y1 + limValue, mouth1.localPosition.z);
-        upmouth0_M.localPosition = new Vector3(upmouth0_M.localPosition.x, y0 - limValue, upmouth0_M.localPosition.z);
-        upmouth01_L.localPosition = new Vector3(upmouth01_L.localPosition.x, y0 - limValue, upmouth01_L.localPosition.z);
-        upmouth02_R.localPosition = new Vector3(upmouth02_R.localPosition.x, y0 - limValue, upmouth02_R.localPosition.z);
+        upmouth0_M.localPosition = new Vector3(upmouth0_M.localPosition.x, upmouth0_M.localPosition.y, y0 + limValue);
+        upmouth01_L.localPosition = new Vector3(upmouth01_L.localPosition.x, upmouth01_L.localPosition.y, y0 + limValue);
+        upmouth02_R.localPosition = new Vector3(upmouth02_R.localPosition.x, upmouth02_R.localPosition.y, y0 + limValue);
         downmouth1_M.localPosition = new Vector3(downmouth1_M.localPosition.x, y1 + limValue, downmouth1_M.localPosition.z);
         downmouth11_L.localPosition = new Vector3(downmouth11_L.localPosition.x, y1 + limValue, downmouth11_L.localPosition.z);
         downmouth12_R.localPosition = new Vector3(downmouth12_R.localPosition.x, y1 + limValue, downmouth12_R.localPosition.z);
 
+        //upmouth0_M.localPosition = new Vector3(upmouth0_M.localPosition.x, y0 - limValue, upmouth0_M.localPosition.z);
+        //upmouth01_L.localPosition = new Vector3(upmouth01_L.localPosition.x, y0 - limValue, upmouth01_L.localPosition.z);
+        //upmouth02_R.localPosition = new Vector3(upmouth02_R.localPosition.x, y0 - limValue, upmouth02_R.localPosition.z);
+        //downmouth1_M.localPosition = new Vector3(downmouth1_M.localPosition.x, y1 + limValue, downmouth1_M.localPosition.z);
+        //downmouth11_L.localPosition = new Vector3(downmouth11_L.localPosition.x, y1 + limValue, downmouth11_L.localPosition.z);
+        //downmouth12_R.localPosition = new Vector3(downmouth12_R.localPosition.x, y1 + limValue, downmouth12_R.localPosition.z);
     }
 
 }
