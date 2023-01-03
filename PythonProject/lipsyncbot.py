@@ -106,14 +106,14 @@ if __name__ == '__main__':
 ##    speak("What do you want")
 ##    exit()
     
-    print("Speak...")
-    time.sleep(5)
-    speak("You jerk. What do you want")
-    time.sleep(2)
-    print("Speak...")
-    time.sleep(5)
-    speak("Why? You left me. Fuck off")
-    time.sleep(142)
+##    print("Speak...")
+##    time.sleep(5)
+##    speak("You jerk. What do you want")
+##    time.sleep(2)
+##    print("Speak...")
+##    time.sleep(5)
+##    speak("Why? You left me. Fuck off")
+##    time.sleep(142)
     
 
     
