@@ -6,10 +6,17 @@ using UnityEngine.Windows.Speech;
 
 public class WindowsSpeechRecognition : MonoBehaviour, ISpeechRecognition, IDisposable
 {
+    public static WindowsSpeechRecognition Instance;
+
     public ResultCallback onPartialResults = new();
     public ResultCallback onFinalResults = new();
 
     protected DictationRecognizer dictationRecognizer;
+
+    private void OnEnable()
+    {
+        if (Instance == null) Instance = this; else Destroy(this);
+    }
 
     public void Initialize(ResultCallback sentenceComplete, ResultCallback wordComplete)
     {
@@ -44,15 +51,23 @@ public class WindowsSpeechRecognition : MonoBehaviour, ISpeechRecognition, IDisp
         if (dictationRecognizer != null)
         {
             dictationRecognizer.DictationHypothesis -= DictationRecognizer_OnDictationHypothesis;
-            //dictationRecognizer.DictationComplete -= DictationRecognizer_OnDictationComplete;
             dictationRecognizer.DictationResult -= DictationRecognizer_OnDictationResult;
-            //dictationRecognizer.DictationError -= DictationRecognizer_OnDictationError;
             if (dictationRecognizer.Status == SpeechSystemStatus.Running)
             {
                 dictationRecognizer.Stop();
             }
             dictationRecognizer.Dispose();
         }
+    }
+
+    public void Pause()
+    {
+        dictationRecognizer?.Stop();
+    }
+
+    public void Resume()
+    {
+        dictationRecognizer?.Start();
     }
 }
 

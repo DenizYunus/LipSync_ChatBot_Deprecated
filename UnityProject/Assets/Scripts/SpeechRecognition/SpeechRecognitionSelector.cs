@@ -1,17 +1,22 @@
 using Assets.Scripts.SpeechRecognition;
 using KKSpeech;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class SpeechRecognitionSelector : MonoBehaviour
 {
+    public static SpeechRecognitionSelector Instance;
+
     public static Platforms platform;
-    ISpeechRecognition recognizer;
+    public static ISpeechRecognition recognizer;
     GameObject recognizerObject;
 
     public ResultCallback onPartialResults = new();
     public ResultCallback onFinalResults = new();
+
+    private void OnEnable()
+    {
+        if (Instance == null) Instance = this; else Destroy(this);
+    }
 
     void Awake()
     {

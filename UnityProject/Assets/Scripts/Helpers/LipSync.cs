@@ -1,10 +1,10 @@
-﻿using UnityEngine;
-using System.Collections;
-using System.Collections.Generic;
-using System;
+﻿using System.Collections;
+using UnityEngine;
+using UnityEngine.Networking;
 
 public class LipSync : MonoBehaviour
 {
+    public static LipSync Instance;
 
     // Use this for initialization
 
@@ -23,7 +23,7 @@ public class LipSync : MonoBehaviour
     int fMax = 24000;
 
     public Transform upmouth0_M, upmouth01_L, upmouth02_R, downmouth1_M, downmouth11_L, downmouth12_R;
-    float volume = 0.1f; //----------------1000 ----- was 1
+    float volume = 0.4f; //----------------1000 ----- was 1
     //  float freqLow = 200;
     //  float freqHigh = 800;
     //value change
@@ -43,6 +43,8 @@ public class LipSync : MonoBehaviour
 
     void OnEnable()
     {
+        if (Instance == null) Instance = this; else Destroy(this);
+
         secCounter = 0;
 
         //      y0 = mouth0.localPosition.y;
@@ -55,14 +57,12 @@ public class LipSync : MonoBehaviour
         y1 = downmouth11_L.localPosition.y;
         y1 = downmouth12_R.localPosition.y;
 
-        freqData = new float[nSamples];
+        //freqData = new float[nSamples];
         ///////////source_clip = SetFace.voiceOver;
         //////////      //GetComponent<AudioSource>().clip = Rec_voice.instance.voiceFeed.clip;
         //source.Play();
-        video_Length = Mathf.CeilToInt(source_clip.length);
-
+        //video_Length = Mathf.CeilToInt(source_clip.length);
     }
-
 
     float BandVol(float fLow, float fHigh)
     {
@@ -104,14 +104,13 @@ public class LipSync : MonoBehaviour
     void Start()
     {
         source = GetComponent<AudioSource>();
-        www = new WWW(audioFilePath);
     }
 
-    public void activateSound(/*string pathToFile*/)
-    {
-        //audioFilePath = pathToFile;
 
-        UnityMainThreadDispatcher.Instance().Enqueue(startSound());
+    public void activateSound(string soundURL)
+    {
+        UnityMainThreadDispatcher.Instance().Enqueue(startSound(soundURL));
+        //StartCoroutine(startSound(soundURL));
 
         /*UnityMainThread.wkr.AddJob(() =>
         {
@@ -123,15 +122,14 @@ public class LipSync : MonoBehaviour
         });*/
     }
 
-    IEnumerator startSound()
+    IEnumerator startSound(string soundURL)
     {
-        www = new WWW(audioFilePath);
+        www = new WWW(soundURL);
         yield return www;
         source.clip = www.GetAudioClip();
-        source_clip = www.GetAudioClip();
         freqData = new float[nSamples];
         source.Play();
-        video_Length = Mathf.CeilToInt(source_clip.length);
+        //video_Length = Mathf.CeilToInt(source_clip.length);
     }
 
     float limValue;
@@ -149,20 +147,21 @@ public class LipSync : MonoBehaviour
         //}
 
         float band_vol = BandVol(freqLow, freqHigh);//--------------------------------------------------------
-        print(band_vol);
+        //print(band_vol);
         float val = MovingAverage(band_vol) * volume;
         //limValue = val;//Mathf.Clamp (val, 0, 0.1f);
         //limValue = Mathf.Clamp (val, 0, 10f);
         //check new lip movement abd set clamp val
         limValue = Mathf.Clamp(val, 0, 25); //-----------------------------------------------25 ---------- 0.02f
         //Debug.Log(limValue);//-------------------------------------------------------------------------------------------
-        if (Input.GetKeyDown(KeyCode.Escape))
-        {
-            Application.Quit();
-        }
+        //if (Input.GetKeyDown(KeyCode.Escape))
+        //{
+        //    Application.Quit();
+        //}
         /*  mouth0.position = new Vector3 (mouth0.position.x, y0 - MovingAverage (band_vol) * volume, mouth0.position.z);
         mouth1.position = new Vector3 (mouth1.position.x, y1 + MovingAverage (band_vol) * volume * 0.3f, mouth1.position.z);*/
     }
+
     void LateUpdate()
     {
         //      mouth0.localPosition = new Vector3 (mouth0.localPosition.x, y0 - limValue, mouth0.localPosition.z);

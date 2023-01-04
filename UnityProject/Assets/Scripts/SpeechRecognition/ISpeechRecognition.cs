@@ -10,5 +10,7 @@ namespace Assets.Scripts.SpeechRecognition
     public interface ISpeechRecognition
     {
         void Initialize(ResultCallback sentenceComplete, ResultCallback wordComplete);
+        void Pause();
+        void Resume();
     }
 }

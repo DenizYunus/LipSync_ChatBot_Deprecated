@@ -84,7 +84,7 @@ public class Communicator : MonoBehaviour
                 print("moved");
                 nwStream.Write(buffer, 0, bytesRead);*/
 
-                lipSync.activateSound();
+                ////////lipSync.activateSound();
                 lipSync.soundPlayed = false;
             }
         }
