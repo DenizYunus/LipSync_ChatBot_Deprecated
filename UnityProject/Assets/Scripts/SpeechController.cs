@@ -12,13 +12,17 @@ public class SpeechController : MonoBehaviour
     public void SentenceDetected(string text)
     {
         print(text);
+        bool found = false;
         foreach (KeyValuePair<string, string> keyValuePair in intents)
         {
             if (text.Contains(keyValuePair.Key))
             {
                 TTSWebHelper.Speak(keyValuePair.Value);
+                found = true;
+                break;
             }
         }
+        if (found == false) SpeechRecognitionSelector.recognizer.Resume();
     }
 
     Dictionary<string, string> intents = new Dictionary<string, string>()

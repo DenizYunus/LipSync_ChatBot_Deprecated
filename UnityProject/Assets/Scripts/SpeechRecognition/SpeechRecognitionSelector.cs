@@ -43,8 +43,10 @@ public class SpeechRecognitionSelector : MonoBehaviour
         }
         else if (platform == Platforms.Windows || platform == Platforms.Editor)
         {
+#if UNITY_EDITOR_WIN || UNITY_STANDALONE_WIN
             recognizer = transform.GetComponentInChildren<WindowsSpeechRecognition>(true);
             recognizerObject = transform.GetComponentInChildren<WindowsSpeechRecognition>(true).gameObject;
+#endif
         }
         recognizerObject.SetActive(true);
         recognizer.Initialize(onFinalResults, onPartialResults);

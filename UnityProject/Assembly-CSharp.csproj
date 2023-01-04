@@ -57,17 +57,17 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Assets\Scripts\Helpers\LipSync.cs" />
-    <Compile Include="Assets\3rdParty\KKSpeechRecognizer\MobileSpeechRecognizerListener.cs" />
+    <Compile Include="Assets\KKSpeechRecognizer\MobileSpeechRecognizerListener.cs" />
     <Compile Include="Assets\Scripts\Helpers\Communicator.cs" />
-    <Compile Include="Assets\3rdParty\KKSpeechRecognizer\SpeechRecognizer.cs" />
+    <Compile Include="Assets\KKSpeechRecognizer\SpeechRecognizer.cs" />
+    <Compile Include="Assets\Scripts\SpeechController.cs" />
     <Compile Include="Assets\Scripts\SpeechRecognition\SpeechRecognitionSelector.cs" />
-    <Compile Include="Assets\3rdParty\KKSpeechRecognizer\Example\SpeechRecognitionLanguageDropdown.cs" />
+    <Compile Include="Assets\Scripts\TTS\TTSWebHelper.cs" />
+    <Compile Include="Assets\KKSpeechRecognizer\Example\SpeechRecognitionLanguageDropdown.cs" />
     <Compile Include="Assets\Scripts\Helpers\UnityMainThreadDispatcher.cs" />
     <Compile Include="Assets\Scripts\SpeechRecognition\WindowsSpeechRecognition.cs" />
     <Compile Include="Assets\Scripts\SpeechRecognition\ISpeechRecognition.cs" />
-    <Compile Include="Assets\3rdParty\KKSpeechRecognizer\Example\RecordingCanvas.cs" />
-    <Compile Include="Assets\Scripts\TTS\TTSWebHelper.cs" />
-    <Compile Include="Assets\Scripts\SpeechController.cs" />
+    <Compile Include="Assets\KKSpeechRecognizer\Example\RecordingCanvas.cs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="UnityEngine">

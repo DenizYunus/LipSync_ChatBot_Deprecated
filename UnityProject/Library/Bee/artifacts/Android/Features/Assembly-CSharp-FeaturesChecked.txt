@@ -1,2 +1,5 @@
+UnityEngine.Networking
 System.Net.Sockets
+UnityEngine.Network
 UnityEngine.WWW
+UnityEngine.Networking.UnityWebRequest

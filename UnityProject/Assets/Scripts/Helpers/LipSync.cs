@@ -1,6 +1,5 @@
 ﻿using System.Collections;
 using UnityEngine;
-using UnityEngine.Networking;
 
 public class LipSync : MonoBehaviour
 {
@@ -130,6 +129,8 @@ public class LipSync : MonoBehaviour
         freqData = new float[nSamples];
         source.Play();
         //video_Length = Mathf.CeilToInt(source_clip.length);
+        yield return new WaitForSeconds(www.GetAudioClip().length);
+        SpeechRecognitionSelector.recognizer.Resume();
     }
 
     float limValue;

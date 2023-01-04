@@ -1,8 +1,15 @@
 ScriptsOnlyBuild:
   usedScripts:
     Assembly-CSharp.dll:
-    - KKSpeech.SpeechRecognizerListener
+    - Communicator
+    - KKSpeech.MobileSpeechRecognizerListener
+    - LipSync
     - RecordingCanvas
+    - SpeechController
+    - SpeechRecognitionSelector
+    - TTSWebHelper
+    - UnityMainThreadDispatcher
+    - WindowsSpeechRecognition
     Unity.Rider.Editor.dll:
     - Packages.Rider.Editor.UnitTesting.CallbackData
     UnityEditor.TestRunner.dll:
@@ -19,11 +26,11 @@ ScriptsOnlyBuild:
     - UnityEngine.UI.Text
   serializedClasses:
     Assembly-CSharp:
-    - KKSpeech.SpeechRecognizerListener/AuthorizationCallback
-    - KKSpeech.SpeechRecognizerListener/AvailabilityCallback
-    - KKSpeech.SpeechRecognizerListener/ErrorCallback
-    - KKSpeech.SpeechRecognizerListener/ResultCallback
-    - KKSpeech.SpeechRecognizerListener/SupportedLanguagesCallback
+    - KKSpeech.MobileSpeechRecognizerListener/AuthorizationCallback
+    - KKSpeech.MobileSpeechRecognizerListener/AvailabilityCallback
+    - KKSpeech.MobileSpeechRecognizerListener/ErrorCallback
+    - KKSpeech.MobileSpeechRecognizerListener/SupportedLanguagesCallback
+    - ResultCallback
     UnityEngine.CoreModule:
     - UnityEngine.Events.ArgumentCache
     - UnityEngine.Events.PersistentCallGroup
@@ -38,9 +45,15 @@ ScriptsOnlyBuild:
     - UnityEngine.UI.Navigation
     - UnityEngine.UI.SpriteState
   methodsToPreserve:
+  - assembly: Assembly-CSharp
+    fullTypeName: SpeechController
+    methodName: WordDetected
   - assembly: UnityEngine.UI
     fullTypeName: UnityEngine.UI.Text
     methodName: set_text
+  - assembly: Assembly-CSharp
+    fullTypeName: SpeechController
+    methodName: SentenceDetected
   sceneClasses:
     Assets/KKSpeechRecognizer/Example/ExampleScene.unity:
     - Class: 1
@@ -53,35 +66,67 @@ ScriptsOnlyBuild:
       Script: {instanceID: 0}
     - Class: 28
       Script: {instanceID: 0}
+    - Class: 43
+      Script: {instanceID: 0}
     - Class: 48
+      Script: {instanceID: 0}
+    - Class: 74
       Script: {instanceID: 0}
     - Class: 81
       Script: {instanceID: 0}
+    - Class: 82
+      Script: {instanceID: 0}
+    - Class: 83
+      Script: {instanceID: 0}
+    - Class: 90
+      Script: {instanceID: 0}
+    - Class: 91
+      Script: {instanceID: 0}
+    - Class: 95
+      Script: {instanceID: 0}
     - Class: 104
       Script: {instanceID: 0}
+    - Class: 108
+      Script: {instanceID: 0}
     - Class: 114
-      Script: {instanceID: 1554}
+      Script: {instanceID: 1558}
     - Class: 114
-      Script: {instanceID: 2126}
+      Script: {instanceID: 1862}
     - Class: 114
-      Script: {instanceID: 2462}
+      Script: {instanceID: 2130}
     - Class: 114
-      Script: {instanceID: 2578}
+      Script: {instanceID: 2430}
     - Class: 114
-      Script: {instanceID: 2766}
+      Script: {instanceID: 2468}
     - Class: 114
-      Script: {instanceID: 2980}
+      Script: {instanceID: 2548}
     - Class: 114
-      Script: {instanceID: 3080}
+      Script: {instanceID: 2584}
     - Class: 114
-      Script: {instanceID: 21950}
+      Script: {instanceID: 2714}
     - Class: 114
-      Script: {instanceID: 21952}
+      Script: {instanceID: 2778}
+    - Class: 114
+      Script: {instanceID: 2894}
+    - Class: 114
+      Script: {instanceID: 2956}
+    - Class: 114
+      Script: {instanceID: 2996}
+    - Class: 114
+      Script: {instanceID: 3096}
+    - Class: 114
+      Script: {instanceID: 4400}
+    - Class: 114
+      Script: {instanceID: 4696}
+    - Class: 114
+      Script: {instanceID: 4716}
     - Class: 115
       Script: {instanceID: 0}
     - Class: 124
       Script: {instanceID: 0}
     - Class: 128
+      Script: {instanceID: 0}
+    - Class: 137
       Script: {instanceID: 0}
     - Class: 157
       Script: {instanceID: 0}
@@ -214,6 +259,12 @@ ScriptsOnlyBuild:
     className: RawImage
   - hash:
       serializedVersion: 2
+      Hash: 9bdb24c5d8907304ba556f0c926ef5f7
+    assemblyName: Assembly-CSharp.dll
+    namespaceName: KKSpeech
+    className: MobileSpeechRecognizerListener
+  - hash:
+      serializedVersion: 2
       Hash: a1aa98c78061c6f03a8c124cda576e67
     assemblyName: UnityEngine.UI.dll
     namespaceName: UnityEngine.UI
@@ -263,6 +314,12 @@ ScriptsOnlyBuild:
   - hash:
       serializedVersion: 2
       Hash: 71bb6a6b6c8f052f948db64c7dd3ca4f
+    assemblyName: Assembly-CSharp.dll
+    namespaceName: 
+    className: SpeechController
+  - hash:
+      serializedVersion: 2
+      Hash: 71bb6a6b6c8f052f948db64c7dd3ca4f
     assemblyName: UnityEngine.TestRunner.dll
     namespaceName: UnityEngine.TestRunner.Utils
     className: TestRunCallbackListener
@@ -296,6 +353,18 @@ ScriptsOnlyBuild:
     assemblyName: UnityEngine.TestRunner.dll
     namespaceName: UnityEngine.TestTools.TestRunner.Callbacks
     className: TestResultRendererCallback
+  - hash:
+      serializedVersion: 2
+      Hash: 75dd70deba4867e4a950f4bd43a585b9
+    assemblyName: Assembly-CSharp.dll
+    namespaceName: 
+    className: SpeechRecognitionSelector
+  - hash:
+      serializedVersion: 2
+      Hash: 259e50c677011f5908329c6be3bd7f8d
+    assemblyName: Assembly-CSharp.dll
+    namespaceName: 
+    className: TTSWebHelper
   - hash:
       serializedVersion: 2
       Hash: e09e8bebc0fcd32bb8af1287a6b44816
@@ -344,6 +413,12 @@ ScriptsOnlyBuild:
     assemblyName: Unity.TextMeshPro.dll
     namespaceName: TMPro
     className: TextContainer
+  - hash:
+      serializedVersion: 2
+      Hash: 71bb6a6b6c8f052f948db64c7dd3ca4f
+    assemblyName: Assembly-CSharp.dll
+    namespaceName: KKSpeech
+    className: SpeechRecognitionLanguageDropdown
   - hash:
       serializedVersion: 2
       Hash: 8aa3d6ccbcb54ee8db6c1229854adaaa
@@ -526,6 +601,18 @@ ScriptsOnlyBuild:
     className: TMP_ScrollbarEventHandler
   - hash:
       serializedVersion: 2
+      Hash: 75dd70deba4867e4a950f4bd43a585b9
+    assemblyName: Assembly-CSharp.dll
+    namespaceName: 
+    className: WindowsSpeechRecognition
+  - hash:
+      serializedVersion: 2
+      Hash: 74b7a3bd47f0884b3138d3f65157376b
+    assemblyName: Assembly-CSharp.dll
+    namespaceName: 
+    className: RecordingCanvas
+  - hash:
+      serializedVersion: 2
       Hash: 8220b46879dc5e37db1b940c938f5744
     assemblyName: Unity.Timeline.dll
     namespaceName: UnityEngine.Timeline
@@ -548,24 +635,6 @@ ScriptsOnlyBuild:
     assemblyName: UnityEngine.UI.dll
     namespaceName: UnityEngine.EventSystems
     className: TouchInputModule
-  - hash:
-      serializedVersion: 2
-      Hash: 71bb6a6b6c8f052f948db64c7dd3ca4f
-    assemblyName: Assembly-CSharp.dll
-    namespaceName: KKSpeech
-    className: SpeechRecognitionLanguageDropdown
-  - hash:
-      serializedVersion: 2
-      Hash: 74b7a3bd47f0884b3138d3f65157376b
-    assemblyName: Assembly-CSharp.dll
-    namespaceName: 
-    className: RecordingCanvas
-  - hash:
-      serializedVersion: 2
-      Hash: 9bdb24c5d8907304ba556f0c926ef5f7
-    assemblyName: Assembly-CSharp.dll
-    namespaceName: KKSpeech
-    className: SpeechRecognizerListener
   platform: 13
   scenePathNames:
   - Assets/KKSpeechRecognizer/Example/ExampleScene.unity

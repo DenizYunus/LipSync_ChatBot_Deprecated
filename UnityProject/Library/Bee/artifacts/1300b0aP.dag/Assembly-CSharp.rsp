@@ -307,11 +307,16 @@
 -r:"Library/Bee/artifacts/1300b0aP.dag/UnityEngine.UI.ref.dll"
 "Assets/KKSpeechRecognizer/Example/RecordingCanvas.cs"
 "Assets/KKSpeechRecognizer/Example/SpeechRecognitionLanguageDropdown.cs"
+"Assets/KKSpeechRecognizer/MobileSpeechRecognizerListener.cs"
 "Assets/KKSpeechRecognizer/SpeechRecognizer.cs"
-"Assets/KKSpeechRecognizer/SpeechRecognizerListener.cs"
-"Assets/Scripts/Communicator.cs"
-"Assets/Scripts/LipSync.cs"
-"Assets/Scripts/UnityMainThreadDispatcher.cs"
+"Assets/Scripts/Helpers/Communicator.cs"
+"Assets/Scripts/Helpers/LipSync.cs"
+"Assets/Scripts/Helpers/UnityMainThreadDispatcher.cs"
+"Assets/Scripts/SpeechController.cs"
+"Assets/Scripts/SpeechRecognition/ISpeechRecognition.cs"
+"Assets/Scripts/SpeechRecognition/SpeechRecognitionSelector.cs"
+"Assets/Scripts/SpeechRecognition/WindowsSpeechRecognition.cs"
+"Assets/Scripts/TTS/TTSWebHelper.cs"
 -langversion:9.0
 
 /deterministic
