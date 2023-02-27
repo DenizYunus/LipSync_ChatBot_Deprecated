@@ -1,15 +1,11 @@
+﻿using Assets.Scripts.TTS;
 using System.Collections;
 using UnityEngine;
 using UnityEngine.Networking;
 
-public class TTSWebHelper : MonoBehaviour
+public class TTSWebHelper : MonoBehaviour, ITTS
 {
     public static TTSWebHelper Instance;
-
-    [SerializeField]
-    LipSync lipSync;
-    [SerializeField]
-    AudioSource source;
 
     private void OnEnable()
     {
@@ -49,7 +45,7 @@ public class TTSWebHelper : MonoBehaviour
             //if (MobileSpeechRecognizerListener.Instance != null) MobileSpeechRecognizerListener.Instance.Pause();
             //if (WindowsSpeechRecognition.Instance != null) WindowsSpeechRecognition.Instance.Pause();
             print(www.downloadHandler.text.Replace("\\/", "/"));
-            lipSync.activateSound(getURLfromJSON(www.downloadHandler.text.Replace("\\/", "/")));
+            LipSync.Instance.activateSound(getURLfromJSON(www.downloadHandler.text.Replace("\\/", "/")));
         }
     }
 
@@ -59,9 +55,10 @@ public class TTSWebHelper : MonoBehaviour
         return data.URL;
     }
 
-    public static void Speak(string text)
+    public void Speak(string text)
     {
-        if (!Instance.source.isPlaying)
+        SpeechSynthesizer.Instance.source.Stop();
+        if (!SpeechSynthesizer.Instance.source.isPlaying)
             Instance.SpeakStartCoroutine(text);
     }
 }
