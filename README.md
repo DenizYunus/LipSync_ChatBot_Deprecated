@@ -1,17 +1,35 @@
-# LipSync ChatBot
+# LipSync ChatBot for Unity
 
-This chatbot is basically a python speech recognition chatbot supported with visualized character able to lip-sync.
+LipSync ChatBot is an innovative project that integrates Python's speech recognition capabilities with a visualized character able to lip-sync in Unity. The chatbot creates a seamless interaction experience, with the lips of the character syncing perfectly with the audio. The future development plan includes the improvement to work solely with Unity using the ChatGPT API.
 
-# Usage and How It Works
+## Table of Contents
+1. [Introduction](#introduction)
+2. [Features](#features)
+3. [Usage and How It Works](#usage-and-how-it-works)
+4. [Parameters](#parameters)
+5. [Future Enhancements](#future-enhancements)
 
-  - Open the Unity project.
-  - Run the Python project.
-  - When you run the Python project, Unity will detect it over localhost. Python uses TTS to create the sound and uses AudioSegment library to convert the mp3 file to wav file. (Unity cannot load MP3 files with WWW api to load from filesystem.)
-  - Python sends the command to Unity to let Unity read sound file from filesystem and make the model lip sync the sound.
+## Introduction
+LipSync ChatBot offers a realistic and engaging user experience, making it suitable for games, simulations, and more.
 
-# Parameters
+## Features
+- Speech recognition using Python
+- Lip synchronization with visualized characters in Unity
+- Flexibility in adjusting lip sync power and distance
+- Compatibility with wav file formats
 
-  - You can use "* volume" attribute to change the power of lip sync (distance between lips etc.).
-  - You can use "limit = Mathf.clamp" line's end to change the max distance lips can get.
+## Usage and How It Works
+1. **Open the Unity project**: Prepare the Unity environment.
+2. **Run the Python project**: Activate the speech recognition module.
+3. **Unity Detection over localhost**: Unity will detect the Python project running over localhost.
+4. **TTS and AudioSegment Library**: Python uses TTS to create sound, then the AudioSegment library converts the mp3 file to a wav file.
+5. **Unity Reads Sound File**: Python sends a command to Unity, letting it read the sound file from the filesystem and make the model lip-sync to the sound.
 
-> Later on this project can be used to create Google Assistant supported chat bots etc.
+## Parameters
+- `* volume`: Change the power of lip sync (distance between lips, etc.).
+- `limit = Mathf.clamp`: Adjust the line's end to change the maximum distance the lips can get.
+
+## Future Enhancements
+- Integration with ChatGPT API to make the chatbot much more intelligent and can be only run on Unity without Python project.
+
+Feel free to contact me if you have any questions or need further assistance with this project.
