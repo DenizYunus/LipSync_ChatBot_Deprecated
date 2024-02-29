@@ -1,5 +1,12 @@
 # LipSync ChatBot for Unity
 
+> [!CAUTION]
+> This version of the software is deprecated and no longer maintained. Please visit the new repository for the latest version of the GPT Assisted, Lip Synced Chatbot project.
+>
+> [Go to the latest version](https://github.com/DenizYunus/Freelance_GPTAssistedLipSyncedChatbot)
+>
+> We strongly recommend using the updated version to ensure you have access to the latest features and improvements.
+
 LipSync ChatBot is an innovative project that integrates Python's speech recognition capabilities with a visualized character able to lip-sync in Unity. The chatbot creates a seamless interaction experience, with the lips of the character syncing perfectly with the audio. The future development plan includes the improvement to work solely with Unity using the ChatGPT API.
 
 ## Table of Contents
